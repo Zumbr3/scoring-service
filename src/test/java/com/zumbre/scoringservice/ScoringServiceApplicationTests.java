@@ -1,4 +1,4 @@
-package com.yuri.estudo.scoringservice;
+package com.zumbre.scoringservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
