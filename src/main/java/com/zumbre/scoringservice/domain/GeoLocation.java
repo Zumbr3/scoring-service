@@ -1,3 +1,4 @@
 package com.zumbre.scoringservice.domain;
 
-public record GeoLocation() {}
+
+public record GeoLocation(double lat, double lon) {}

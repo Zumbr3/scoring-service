@@ -1,3 +1,6 @@
 package com.zumbre.scoringservice.domain;
 
-public record Transaction() {}
+import java.math.BigDecimal;
+
+public record Transaction(
+    String id, GeoLocation geoLocation, AccountDetails account, BigDecimal ammount) {}

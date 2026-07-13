@@ -1,3 +1,5 @@
 package com.zumbre.scoringservice.domain;
 
-public record AccountDetails() {}
+import java.util.Date;
+
+public record AccountDetails(String accountId, Date createdAt, String kycStatus, Date updatedAt) {}
