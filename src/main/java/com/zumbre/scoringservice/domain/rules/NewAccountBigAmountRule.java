@@ -16,7 +16,7 @@ public class NewAccountBigAmountRule {
     this.amountLimit = amountLimit;
   }
 
-  public boolean evaluateNewAccountRule() {
+  public boolean evaluate() {
     AccountDetails account = this.transaction.account();
     Instant accountCreationDate = account.createdAt();
     Instant transactionOccurredAt = this.transaction.occuredAt();
