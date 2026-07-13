@@ -1,7 +1,11 @@
 package com.zumbre.scoringservice.domain;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.Instant;
 
 public record Transaction(
-        String id, GeoLocation geoLocation, AccountDetails account, BigDecimal ammount, Date occuredAt) {}
+    String id,
+    GeoLocation geoLocation,
+    AccountDetails account,
+    BigDecimal amount,
+    Instant transactionDate ) {}

@@ -8,22 +8,22 @@ import java.time.Duration;
 import java.time.Instant;
 
 public class NewAccountBigAmountRule {
-  private Transaction transaction;
-  private BigDecimal amountLimit;
+  private final BigDecimal amountLimit;
+  private final int daysForRule;
 
-  public NewAccountBigAmountRule(Transaction transaction, BigDecimal amountLimit) {
-    this.transaction = transaction;
+  public NewAccountBigAmountRule(BigDecimal amountLimit, int daysForRule) {
     this.amountLimit = amountLimit;
+    this.daysForRule = daysForRule;
   }
 
-  public boolean evaluate() {
-    AccountDetails account = this.transaction.account();
+  public boolean evaluate(Transaction transaction) {
+    AccountDetails account = transaction.account();
     Instant accountCreationDate = account.createdAt();
-    Instant transactionOccurredAt = this.transaction.occuredAt();
+    Instant transactionOccurredAt = transaction.transactionDate();
 
     Duration age = Duration.between(accountCreationDate, transactionOccurredAt);
 
-    return age.compareTo(Duration.ofDays(7)) < 0
-        && this.transaction.amount().compareTo(this.amountLimit) > 0;
+    return age.compareTo(Duration.ofDays(this.daysForRule)) < 0
+        && transaction.amount().compareTo(this.amountLimit) > 0;
   }
 }
