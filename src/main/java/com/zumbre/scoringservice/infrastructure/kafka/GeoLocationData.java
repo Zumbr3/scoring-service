@@ -1,3 +1,3 @@
 package com.zumbre.scoringservice.infrastructure.kafka;
 
-public record GeoLocation(double lat, double lon) {}
+public record GeoLocationData(double lat, double lon) {}

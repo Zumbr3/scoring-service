@@ -4,16 +4,16 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
 
-public record Transaction(
+public record TransactionData(
     UUID transactionId,
     UUID accountId,
-    CurrencyEnum currency,
-    TransactionTypeEnum type,
+    String currency,
+    String type,
     String counterpartyAccount,
     UUID deviceId,
     String ipAddress,
-    GeoLocation geoLocation,
+    GeoLocationData geoLocation,
     Instant transactionDate,
     String channel,
     BigDecimal amount,
-    Account accountDetails) {}
+    AccountDetailsData accountDetails) {}
