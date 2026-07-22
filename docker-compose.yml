@@ -1,4 +1,12 @@
 services:
+  scoring-service:
+    build: .
+    environment:
+        SPRING_KAFKA_BOOTSTRAP_SERVERS: broker:9092
+    depends_on:
+      - redis
+      - broker
+
   redis:
     image: redis:7.4-alpine
     container_name: redis_server
@@ -6,7 +14,7 @@ services:
   broker:
     image: apache/kafka:4.3.1
     container_name: broker
-    ports: [9094:9094]
+    ports: [ 9094:9094 ]
     environment:
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: broker,controller
