@@ -1,0 +1,31 @@
+services:
+  scoring-service:
+    build: .
+    environment:
+        SPRING_KAFKA_BOOTSTRAP_SERVERS: broker:9092
+    depends_on:
+      - redis
+      - broker
+
+  redis:
+    image: redis:7.4-alpine
+    container_name: redis_server
+    ports: [ 6379:6379 ]
+  broker:
+    image: apache/kafka:4.3.1
+    container_name: broker
+    ports: [ 9094:9094 ]
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: INTERNO://0.0.0.0:9092,CONTROLLER://localhost:9093,EXTERNO://0.0.0.0:9094
+      KAFKA_ADVERTISED_LISTENERS: EXTERNO://localhost:9094,INTERNO://broker:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNO:PLAINTEXT,EXTERNO:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNO
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_NUM_PARTITIONS: 3
