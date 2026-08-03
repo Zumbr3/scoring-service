@@ -1,4 +1,4 @@
-package com.zumbre.scoringservice.infrastructure.kafka;
+package com.zumbre.scoringservice.infrastructure.kafka.inbound;
 
 import java.time.Instant;
 
