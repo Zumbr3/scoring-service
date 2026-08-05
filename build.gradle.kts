@@ -24,6 +24,8 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	implementation("org.springframework.boot:spring-boot-starter-kafka")
 	implementation("org.springframework.boot:spring-boot-jackson2")
+	testImplementation("org.testcontainers:kafka")
+	testImplementation("org.awaitility:awaitility")
 }
 
 
